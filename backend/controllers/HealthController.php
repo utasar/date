@@ -4,21 +4,37 @@ require_once __DIR__ . '/../models/User.php';
 
 class HealthController {
     
+    // Macro nutrient percentages
+    private const PROTEIN_PERCENTAGE = 0.30;
+    private const CARBS_PERCENTAGE = 0.40;
+    private const FATS_PERCENTAGE = 0.30;
+    
+    // Calories per gram
+    private const PROTEIN_CALORIES_PER_GRAM = 4;
+    private const CARBS_CALORIES_PER_GRAM = 4;
+    private const FATS_CALORIES_PER_GRAM = 9;
+    
+    // Meal breakdown percentages
+    private const BREAKFAST_PERCENTAGE = 0.25;
+    private const LUNCH_PERCENTAGE = 0.35;
+    private const DINNER_PERCENTAGE = 0.30;
+    private const SNACKS_PERCENTAGE = 0.10;
+    
     public function getCalorieGuide($userId, $activityLevel = 'moderate') {
         $baseCalories = $this->calculateBaseCalories($activityLevel);
         
         return [
             'dailyCalories' => $baseCalories,
             'breakdown' => [
-                'breakfast' => round($baseCalories * 0.25),
-                'lunch' => round($baseCalories * 0.35),
-                'dinner' => round($baseCalories * 0.30),
-                'snacks' => round($baseCalories * 0.10)
+                'breakfast' => round($baseCalories * self::BREAKFAST_PERCENTAGE),
+                'lunch' => round($baseCalories * self::LUNCH_PERCENTAGE),
+                'dinner' => round($baseCalories * self::DINNER_PERCENTAGE),
+                'snacks' => round($baseCalories * self::SNACKS_PERCENTAGE)
             ],
             'macros' => [
-                'protein' => round($baseCalories * 0.30 / 4), // 30% from protein, 4 cal/g
-                'carbs' => round($baseCalories * 0.40 / 4),   // 40% from carbs, 4 cal/g
-                'fats' => round($baseCalories * 0.30 / 9)     // 30% from fats, 9 cal/g
+                'protein' => round($baseCalories * self::PROTEIN_PERCENTAGE / self::PROTEIN_CALORIES_PER_GRAM),
+                'carbs' => round($baseCalories * self::CARBS_PERCENTAGE / self::CARBS_CALORIES_PER_GRAM),
+                'fats' => round($baseCalories * self::FATS_PERCENTAGE / self::FATS_CALORIES_PER_GRAM)
             ]
         ];
     }

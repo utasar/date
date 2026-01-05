@@ -145,6 +145,9 @@ class ActivityController {
         return $exercises[$fitnessLevel] ?? $exercises['beginner'];
     }
     
+    // Default calories per minute for unknown activities (moderate intensity)
+    private const DEFAULT_CALORIES_PER_MINUTE = 7;
+    
     private function calculateCalories($type, $duration) {
         $caloriesPerMinute = [
             'Walking' => 5,
@@ -159,7 +162,7 @@ class ActivityController {
             'Sports' => 10
         ];
         
-        $rate = $caloriesPerMinute[$type] ?? 7;
+        $rate = $caloriesPerMinute[$type] ?? self::DEFAULT_CALORIES_PER_MINUTE;
         return round($rate * $duration);
     }
 }
