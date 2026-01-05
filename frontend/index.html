@@ -3,19 +3,227 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Date App</title>
+    <title>Date App - Your Personal Health Assistant</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <header>
-        <h1>Welcome to Date App</h1>
-        <p>Your personal time and health advisor.</p>
+        <div class="header-content">
+            <h1>🏃 Date App</h1>
+            <p>Your personal time and health assistant</p>
+        </div>
+        <nav>
+            <button class="nav-btn active" data-section="dashboard">Dashboard</button>
+            <button class="nav-btn" data-section="schedule">Schedule</button>
+            <button class="nav-btn" data-section="activities">Activities</button>
+            <button class="nav-btn" data-section="health">Health Plan</button>
+            <button class="nav-btn" data-section="goals">Goals</button>
+            <button class="nav-btn" data-section="locations">Nearby</button>
+        </nav>
     </header>
+
     <main>
-        <section id="schedule">
-            <!-- Placeholder for schedule section -->
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="content-section active">
+            <h2>Dashboard</h2>
+            <div class="dashboard-grid">
+                <div class="card">
+                    <h3>📅 Today's Schedule</h3>
+                    <div id="dashboard-schedule" class="loading">Loading...</div>
+                </div>
+                <div class="card">
+                    <h3>🎯 Today's Goals</h3>
+                    <div id="dashboard-goals" class="loading">Loading...</div>
+                </div>
+                <div class="card">
+                    <h3>💪 Recent Activities</h3>
+                    <div id="dashboard-activities" class="loading">Loading...</div>
+                </div>
+                <div class="card">
+                    <h3>📊 Progress Overview</h3>
+                    <div id="dashboard-progress" class="loading">Loading...</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Schedule Section -->
+        <section id="schedule" class="content-section">
+            <h2>Daily Schedule & Suggestions</h2>
+            <div class="schedule-container">
+                <div class="card">
+                    <h3>📋 Today's Tasks</h3>
+                    <div id="schedule-tasks" class="loading">Loading...</div>
+                </div>
+                <div class="card">
+                    <h3>💡 Smart Suggestions</h3>
+                    <div id="schedule-suggestions" class="loading">Loading...</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Activities Section -->
+        <section id="activities" class="content-section">
+            <h2>Activity Tracker</h2>
+            <div class="activity-container">
+                <div class="card">
+                    <h3>Log New Activity</h3>
+                    <form id="activity-form">
+                        <div class="form-group">
+                            <label for="activity-type">Activity Type:</label>
+                            <select id="activity-type" required>
+                                <option value="Walking">Walking</option>
+                                <option value="Jogging">Jogging</option>
+                                <option value="Running">Running</option>
+                                <option value="Cycling">Cycling</option>
+                                <option value="Swimming">Swimming</option>
+                                <option value="Strength Training">Strength Training</option>
+                                <option value="Yoga">Yoga</option>
+                                <option value="HIIT">HIIT</option>
+                                <option value="Dancing">Dancing</option>
+                                <option value="Sports">Sports</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="activity-duration">Duration (minutes):</label>
+                            <input type="number" id="activity-duration" min="1" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Log Activity</button>
+                    </form>
+                </div>
+                <div class="card">
+                    <h3>Today's Activities</h3>
+                    <div id="activities-list" class="loading">Loading...</div>
+                </div>
+                <div class="card">
+                    <h3>Suggested Exercises</h3>
+                    <div class="form-group">
+                        <label for="fitness-level">Your Fitness Level:</label>
+                        <select id="fitness-level">
+                            <option value="beginner">Beginner</option>
+                            <option value="intermediate">Intermediate</option>
+                            <option value="advanced">Advanced</option>
+                        </select>
+                    </div>
+                    <div id="exercise-suggestions" class="loading">Loading...</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Health Plan Section -->
+        <section id="health" class="content-section">
+            <h2>Health & Nutrition</h2>
+            <div class="health-container">
+                <div class="card">
+                    <h3>🍎 Calorie Guide</h3>
+                    <div class="form-group">
+                        <label for="activity-level">Activity Level:</label>
+                        <select id="activity-level">
+                            <option value="sedentary">Sedentary</option>
+                            <option value="light">Light</option>
+                            <option value="moderate" selected>Moderate</option>
+                            <option value="active">Active</option>
+                            <option value="very_active">Very Active</option>
+                        </select>
+                    </div>
+                    <div id="calorie-guide" class="loading">Loading...</div>
+                </div>
+                <div class="card">
+                    <h3>🥗 Food Suggestions</h3>
+                    <div class="form-group">
+                        <label for="health-goal">Health Goal:</label>
+                        <select id="health-goal">
+                            <option value="weight_loss">Weight Loss</option>
+                            <option value="muscle_gain">Muscle Gain</option>
+                            <option value="maintenance" selected>Maintenance</option>
+                        </select>
+                    </div>
+                    <div id="food-suggestions" class="loading">Loading...</div>
+                </div>
+                <div class="card full-width">
+                    <h3>📋 Personalized Health Plan</h3>
+                    <div class="form-group">
+                        <label for="plan-goal">Plan Goal:</label>
+                        <select id="plan-goal">
+                            <option value="weight_loss">Weight Loss</option>
+                            <option value="muscle_gain">Muscle Gain</option>
+                            <option value="maintenance" selected>General Health</option>
+                        </select>
+                    </div>
+                    <div id="health-plan" class="loading">Loading...</div>
+                </div>
+                <div class="card full-width">
+                    <h3>👨‍⚕️ Nearby Dietitians</h3>
+                    <div id="dietitian-list" class="loading">Loading...</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Goals Section -->
+        <section id="goals" class="content-section">
+            <h2>Goals & Progress</h2>
+            <div class="goals-container">
+                <div class="card">
+                    <h3>Create New Goal</h3>
+                    <form id="goal-form">
+                        <div class="form-group">
+                            <label for="goal-title">Goal Title:</label>
+                            <input type="text" id="goal-title" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="goal-description">Description:</label>
+                            <textarea id="goal-description" rows="3" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="goal-target-date">Target Date:</label>
+                            <input type="date" id="goal-target-date" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Create Goal</button>
+                    </form>
+                </div>
+                <div class="card full-width">
+                    <h3>Active Goals</h3>
+                    <div id="goals-list" class="loading">Loading...</div>
+                </div>
+                <div class="card">
+                    <h3>📅 Today's Goals</h3>
+                    <div id="today-goals" class="loading">Loading...</div>
+                </div>
+                <div class="card">
+                    <h3>📆 Upcoming Goals</h3>
+                    <div id="upcoming-goals" class="loading">Loading...</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Locations Section -->
+        <section id="locations" class="content-section">
+            <h2>Nearby Resources</h2>
+            <div class="form-group">
+                <label for="user-location">Your Location:</label>
+                <input type="text" id="user-location" placeholder="Enter your city" value="Your City">
+                <button class="btn btn-secondary" onclick="updateLocation()">Update Location</button>
+            </div>
+            <div class="locations-container">
+                <div class="card full-width">
+                    <h3>🏋️ Nearby Gyms</h3>
+                    <div id="gyms-list" class="loading">Loading...</div>
+                </div>
+                <div class="card full-width">
+                    <h3>🧘 Fitness Resources</h3>
+                    <div id="resources-list" class="loading">Loading...</div>
+                </div>
+                <div class="card full-width">
+                    <h3>🥙 Healthy Restaurants</h3>
+                    <div id="restaurants-list" class="loading">Loading...</div>
+                </div>
+            </div>
         </section>
     </main>
+
+    <footer>
+        <p>&copy; 2026 Date App - Your Personal Health Assistant</p>
+    </footer>
+
     <script src="js/app.js"></script>
 </body>
 </html>
